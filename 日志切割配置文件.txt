@@ -1,0 +1,11 @@
+/opt/phpad/var/log/www/*.log
+/opt/phpad/var/log/nginx/*.log
+{
+daily
+rotate 60
+dateext
+create 644 root root
+postrotate
+    /bin/kill -HUP `cat /opt/phpad/var/run/nginx.pid 2> /dev/null` 2> /dev/null || true
+endscript
+}
